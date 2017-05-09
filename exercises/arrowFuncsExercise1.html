@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://npmcdn.com/basscss@7.1.1/css/basscss.min.css">
+    <title>es 6 for everyone arrow functions exercise 1</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brian Zelip">
+    <meta name="keywords" content="">
+  </head>
+
+  <body>
+
+    <ul>
+      <li data-time="5:17">Flexbox Video</li>
+      <li data-time="8:22">Flexbox Video</li>
+      <li data-time="3:34">Redux Video</li>
+      <li data-time="5:23">Flexbox Video</li>
+      <li data-time="7:12">Flexbox Video</li>
+      <li data-time="7:24">Redux Video</li>
+      <li data-time="6:46">Flexbox Video</li>
+      <li data-time="4:45">Flexbox Video</li>
+      <li data-time="4:40">Flexbox Video</li>
+      <li data-time="7:58">Redux Video</li>
+      <li data-time="11:51">Flexbox Video</li>
+      <li data-time="9:13">Flexbox Video</li>
+      <li data-time="5:50">Flexbox Video</li>
+      <li data-time="5:52">Redux Video</li>
+      <li data-time="5:49">Flexbox Video</li>
+      <li data-time="8:57">Flexbox Video</li>
+      <li data-time="11:29">Flexbox Video</li>
+      <li data-time="3:07">Flexbox Video</li>
+      <li data-time="5:59">Redux Video</li>
+      <li data-time="3:31">Flexbox Video</li>
+    </ul>
+
+    <script>
+      // Select all the list items on the page and convert to array
+      // Filter for only the elements that contain the word 'flexbox'
+      // map down to a list of time strings
+      // map to an array of seconds
+      // reduce to get total
+      // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+      let seconds = Array.from(document.querySelectorAll('li'))
+        .filter( (item) => item.innerHTML.search(/flex/i) != -1 )
+        .map( (item) => item.dataset.time )
+        .map( (item) => item.split(':') )
+        .map( (item) => (item[0] * 60 * 60) + (item[1] * 60) )
+        .reduce( (acc, val) => acc + val, 0 );
+      console.log('seconds', seconds);
+    </script>
+
+    <!-- <script>
+
+      // My initial solution before watching Wes' solution and seeing his chaining method
+
+      // Select all the list items on the page and convert to array
+      let listItems = [];
+      document.querySelectorAll('li').forEach( (li) => listItems.push(li) );
+      // Filter for only the elements that contain the word 'flexbox'
+      let flexboxItems = listItems.filter( (item) => item.innerHTML.search(/flex/i) != -1 );
+      // map down to a list of time strings
+      let timeStrings = [];
+      flexboxItems.map( (item) => timeStrings.push(item.dataset.time) );
+      // map to an array of seconds
+      function splitTime(time) {
+        return time.split(':');
+      };
+
+      function convertToSecs(arr) {
+        let mins = 60;
+        let secs = 60;
+        return ( (arr[0] * mins * secs) + (arr[1] * secs) );
+      };
+
+      function asSeconds(str) {
+        return convertToSecs(splitTime(str));
+      }
+
+      let seconds = [];
+      timeStrings.map( (string) => seconds.push(asSeconds(string)) );
+      // reduce to get total
+      let total = seconds.reduce( (acc, val) => acc + val, 0 );
+
+      console.log('total', total);
+      // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+    </script> -->
+
+  </body>
+
+</html>
